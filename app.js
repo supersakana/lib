@@ -16,5 +16,13 @@ function addBookToLibrary(title, author, pages, read) {
   myLibrary.push(newBook)
 }
 
-// addBookToLibrary('Atlas Shrugged', 'Ayn Rand', 1000, 'not read')
-// console.log(myLibrary[0].title)
+function displayLibrary(){
+    for(i = 0; i < myLibrary.length; i++){
+        listItem = document.createElement('li').innerText = `${myLibrary[i].info()}`
+        myList.append(listItem);
+    }
+}
+
+addBookToLibrary('Atlas Shrugged', 'Ayn Rand', 1000, 'not read')
+
+displayLibrary()
