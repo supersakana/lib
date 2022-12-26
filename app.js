@@ -32,11 +32,18 @@ function addBookToLibrary(book) {
   myLibrary.push(book)
 }
 
-// appends book to the DOM as li
+// appends book to the DOM as li along with remove button
 function appendBook(book) {
-    li = document.createElement('li')
-    li.appendChild(document.createTextNode(`${book.info()}`))
+    let li = document.createElement('li')
+    let p = document.createElement('p')
+    let removeBtn = document.createElement('button')
+
+    p.innerHTML = `${book.info()}`
+    removeBtn.innerHTML = 'delete'
+
     ul.append(li);
+    li.append(p);
+    li.append(removeBtn)
 }
 
 // clears form inputs after submission
