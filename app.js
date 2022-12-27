@@ -3,19 +3,6 @@ let ul = document.querySelector('.book-list')
 let submitBtn = document.querySelector('.submit-btn')
 let inputs = document.querySelectorAll('.form-input')
 
-// adds book to the library and appends on page
-submitBtn.addEventListener('click', function(){
-    const newBook = new Book(
-        document.getElementById('title').value,
-        document.getElementById('author').value,
-        document.getElementById('pages').value,
-        document.getElementById('read').checked
-    )
-    addBookToLibrary(newBook)
-    appendBook(newBook)
-    clearInputs()
-})
-
 // Book constructor
 function Book(title, author, pages, read) {
     this.title = title
@@ -27,17 +14,29 @@ function Book(title, author, pages, read) {
     }
 }
 
+// adds book to the library and appends on page
+submitBtn.addEventListener('click', function(){
+    const newBook = new Book(
+        document.getElementById('title').value,
+        document.getElementById('author').value,
+        document.getElementById('pages').value,
+        document.getElementById('read').checked
+    )
+    newBook.addToLibrary()
+    newBook.appendBook()
+    clearInputs()
+})
+
 // adds book to library array
-function addBookToLibrary(book) {
-  myLibrary.push(book)
+Book.prototype.addToLibrary = function(){
+    myLibrary.push(this);
 }
 
-// appends book to the DOM as li along with delete button
-function appendBook(book) {
-    let li = newItem(book)
-    let p = document.createElement('p').innerHTML = `${book.info()}`
-    let deleteBtn = createDelete(book)
-    let readBtn = createBox(book)
+Book.prototype.appendBook = function(){
+    let li = newItem(this)
+    let p = document.createElement('p').innerHTML = `${this.info()}`
+    let deleteBtn = createDelete(this)
+    let readBtn = createBox(this)
     let div = document.createElement('div')
 
     deleteBtn.addEventListener('click', function(){
@@ -75,7 +74,6 @@ function createDelete(book){
 function createBox(book){
     box = document.createElement('input')
     box.type = 'checkbox'
-
     if (book.read == true){
         box.checked = true
 
