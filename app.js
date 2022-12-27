@@ -40,10 +40,11 @@ function appendBook(book) {
 
     p.innerHTML = `${book.info()}`
     deleteBtn.innerHTML = 'delete'
-    deleteBtn.classList.add('text-red-500', 'delete-btn')
     
     li.id = `item-${myLibrary.indexOf(book)}`
+    li.classList.add('flex', 'items-center', 'justify-between')
     deleteBtn.dataset.index = myLibrary.indexOf(book)
+    deleteBtn.classList.add('text-red-500', 'delete-btn')
 
 
     deleteBtn.addEventListener('click', function(){
