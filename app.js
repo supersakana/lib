@@ -9,7 +9,7 @@ submitBtn.addEventListener('click', function(){
         document.getElementById('title').value,
         document.getElementById('author').value,
         document.getElementById('pages').value,
-        document.getElementById('read').value
+        document.getElementById('read').checked
     )
     addBookToLibrary(newBook)
     appendBook(newBook)
@@ -61,6 +61,7 @@ function appendBook(book) {
 function clearInputs() {
     inputs.forEach((input)=> {
         input.value = ''
+        input.checked = false
     })
 }
 
@@ -71,7 +72,7 @@ function displayLibrary(){
     })
 }
 
-const atl = new Book('Atlas Shrugged', 'Ayn Rand', 1000, 'not read')
+const atl = new Book('Atlas Shrugged', 'Ayn Rand', 1000, false)
 
 addBookToLibrary(atl)
 displayLibrary()
