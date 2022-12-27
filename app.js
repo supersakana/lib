@@ -43,6 +43,12 @@ function appendBook(book) {
     p.innerHTML = `${book.info()}`
     deleteBtn.innerHTML = 'delete'
     readBtn.type = 'checkbox'
+    if (book.read == true){
+        readBtn.checked = true
+
+    } else {
+        readBtn.checked = false
+    }
     
     li.id = `item-${myLibrary.indexOf(book)}`
     li.classList.add('flex', 'items-center', 'justify-between')
