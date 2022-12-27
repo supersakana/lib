@@ -1,6 +1,6 @@
 let myLibrary = [];
 let ul = document.querySelector('.book-list')
-let submitBtn = document.querySelector('.submit')
+let submitBtn = document.querySelector('.submit-btn')
 let inputs = document.querySelectorAll('.form-input')
 
 // adds book to the library and appends on page
@@ -32,18 +32,28 @@ function addBookToLibrary(book) {
   myLibrary.push(book)
 }
 
-// appends book to the DOM as li along with remove button
+// appends book to the DOM as li along with delete button
 function appendBook(book) {
     let li = document.createElement('li')
     let p = document.createElement('p')
-    let removeBtn = document.createElement('button')
+    let deleteBtn = document.createElement('button')
 
     p.innerHTML = `${book.info()}`
-    removeBtn.innerHTML = 'delete'
+    deleteBtn.innerHTML = 'delete'
+    deleteBtn.classList.add('text-red-500', 'delete-btn')
+    
+    li.id = `item-${myLibrary.indexOf(book)}`
+    deleteBtn.dataset.index = myLibrary.indexOf(book)
+
+
+    deleteBtn.addEventListener('click', function(){
+        item = document.getElementById(`item-${deleteBtn.dataset.index}`)
+        item.remove()
+    })
 
     ul.append(li);
     li.append(p);
-    li.append(removeBtn)
+    li.append(deleteBtn)
 }
 
 // clears form inputs after submission
