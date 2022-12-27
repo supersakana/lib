@@ -23,7 +23,7 @@ function Book(title, author, pages, read) {
     this.pages = pages
     this.read = read
     this.info = function(){
-        return `${title} by ${author}, ${pages} pages, ${read}`
+        return `${title} by ${author}, ${pages} pages`
     }
 }
 
@@ -37,14 +37,17 @@ function appendBook(book) {
     let li = document.createElement('li')
     let p = document.createElement('p')
     let deleteBtn = document.createElement('button')
+    let readBtn = document.createElement('input')
+    let btnContainer = document.createElement('div')
 
     p.innerHTML = `${book.info()}`
     deleteBtn.innerHTML = 'delete'
+    readBtn.type = 'checkbox'
     
     li.id = `item-${myLibrary.indexOf(book)}`
     li.classList.add('flex', 'items-center', 'justify-between')
     deleteBtn.dataset.index = myLibrary.indexOf(book)
-    deleteBtn.classList.add('text-red-500', 'delete-btn')
+    deleteBtn.classList.add('text-red-500', 'ml-3', 'delete-btn')
 
 
     deleteBtn.addEventListener('click', function(){
@@ -54,7 +57,9 @@ function appendBook(book) {
 
     ul.append(li);
     li.append(p);
-    li.append(deleteBtn)
+    li.append(btnContainer);
+    btnContainer.append(readBtn)
+    btnContainer.append(deleteBtn)
 }
 
 // clears form inputs after submission
